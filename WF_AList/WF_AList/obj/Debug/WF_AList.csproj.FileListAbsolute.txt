@@ -11,3 +11,10 @@ F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\obj\De
 F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\obj\Debug\WF_AList.exe
 F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\obj\Debug\WF_AList.pdb
 F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\obj\Debug\WF_AList.frmAddAnime.resources
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\BouncyCastle.Crypto.dll
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Google.Protobuf.dll
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Renci.SshNet.dll
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Ubiety.Dns.Core.dll
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Google.Protobuf.xml
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\MySql.Data.xml
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Renci.SshNet.xml
