@@ -18,3 +18,4 @@ F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\De
 F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Google.Protobuf.xml
 F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\MySql.Data.xml
 F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\bin\Debug\Renci.SshNet.xml
+F:\ECOLE\CFC\4eme\M306\Exercices\M306_ApplicationCSharp\WF_AList\WF_AList\obj\Debug\WF_AList.frmLogin.resources

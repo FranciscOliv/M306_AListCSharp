@@ -26,11 +26,7 @@ namespace WF_AList
             //List<string>[] lst = db.Select();
         }
 
-        private byte[] ImageToBlob(Image img)
-        {
-            ImageConverter converter = new ImageConverter();
-            return (byte[])converter.ConvertTo(img, typeof(byte[]));
-        }
+       
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -41,18 +37,9 @@ namespace WF_AList
 
             if (dr == DialogResult.OK)
             {
-                byte[] imgBlob;
-                
-                if (faa.AnimeCover == null)
-                {
-                    imgBlob = ImageToBlob(Properties.Resources.defaultImg);
-                }
-                else
-                {
-                    imgBlob = ImageToBlob(faa.AnimeCover);
-                }
-                
-                string logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
+                Bitmap img = (faa.AnimeCover == null) ? Properties.Resources.defaultImg : faa.AnimeCover;
+
+                string logs = db.insertAnime(faa.AnimeName, DateTime.Now, img, faa.AnimeDescription);
 
                 lblErrors.Text = logs;
 

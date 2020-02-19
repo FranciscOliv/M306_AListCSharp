@@ -12,6 +12,7 @@ using MySql.Data.MySqlClient;   //Ajouter la dll pour pouvoir l'utiliser
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Drawing.Imaging;
 
 namespace WF_AList
 {
@@ -35,11 +36,11 @@ namespace WF_AList
         //PARAMETRES  DE CONNEXION
         private void Initialize()
         {
-            server = "localhost"; //Renseigner
-            database = "dbalist"; //Renseigner
-            uid = "admin";	//Renseigner
-            password = "Super2012";	//Renseigner
-            string connectionString; 
+            server = Config.Server; //Renseigner
+            database = Config.Database; //Renseigner
+            uid = Config.Uid;	//Renseigner
+            password = Config.Password;	//Renseigner
+            string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
@@ -90,11 +91,11 @@ namespace WF_AList
             }
         }
 
-        public string insertAnime(string nameParam,  DateTime addDateParam,  byte[] coverParam, string descriptionParam)
+        public string insertAnime(string nameParam, DateTime addDateParam, Bitmap coverParam, string descriptionParam)
         {
-          //  string query = "INSERT INTO `yugioh`.`card` (`NAME`, `ATTRIBUTE`, `LEVEL`, `MONSTER_TYPE`, `CARD_TYPE`, `ATK`, `DEF`, `TEXT`, `CARD_IMG`) VALUES (@name, @attribute, @level, @monsterType, @cardType, @atk, @def,@text, @cardImg);";
+            //  string query = "INSERT INTO `yugioh`.`card` (`NAME`, `ATTRIBUTE`, `LEVEL`, `MONSTER_TYPE`, `CARD_TYPE`, `ATK`, `DEF`, `TEXT`, `CARD_IMG`) VALUES (@name, @attribute, @level, @monsterType, @cardType, @atk, @def,@text, @cardImg);";
             string query = "INSERT INTO `dbalist`.`t_anime` (`name`,`addDate`, `cover`, `description` ) VALUES (@name, @addDate, @cover, @description);";
-
+            string coverName = string.Empty;
             try
             {
                 //Open connection
@@ -102,10 +103,13 @@ namespace WF_AList
                 {
                     //create mysql command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                                       
+
+                    //Image params
+                    coverName = GenerateRandomString() + ".png";
+
                     cmd.Parameters.AddWithValue("@name", nameParam);
-                    cmd.Parameters.AddWithValue("@addDate", addDateParam);                    
-                    cmd.Parameters.AddWithValue("@cover", coverParam);
+                    cmd.Parameters.AddWithValue("@addDate", addDateParam);
+                    cmd.Parameters.AddWithValue("@cover", coverName);
                     cmd.Parameters.AddWithValue("@description", descriptionParam);
 
 
@@ -115,18 +119,43 @@ namespace WF_AList
                     //close connection
                     this.CloseConnection();
                 }
-
+                string path = Config.ServerImgPath + coverName;
+                coverParam.Save(@path, ImageFormat.Png);
                 return "Votre anime a bien été ajouté";
             }
             catch (Exception ex)
             {
-                return  "Une erreur est survenue" + ex ;
+                return "Une erreur est survenue" + ex;
             }
         }
 
 
+
+        private string GenerateRandomString()
+        {
+            int length = 7;
+
+            // creating a StringBuilder object()
+            StringBuilder str_build = new StringBuilder();
+            Random random = new Random();
+
+            char letter;
+
+            for (int i = 0; i < length; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str_build.Append(letter);
+            }
+            return str_build.ToString();
+        }
     }
-
-
 }
+
+
+
+
+
+
 

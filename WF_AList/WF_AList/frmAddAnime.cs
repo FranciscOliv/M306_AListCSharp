@@ -28,11 +28,13 @@ namespace WF_AList
         private void btnAddCover_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileOpen = new OpenFileDialog();
-            fileOpen.Title = "Chose an image";
+            fileOpen.Title = "Chose an image";            
             fileOpen.Filter = "Image Files(*.BMP;*.PNG; *.JPG)|*.BMP;*.PNG;*.JPG";
 
-            if (fileOpen.ShowDialog() == DialogResult.OK)
-                AnimeCover = new Bitmap(Image.FromFile(fileOpen.FileName), IMG_WIDTH, IMG_HEIGH);
+            if (fileOpen.ShowDialog() == DialogResult.OK) { 
+                AnimeCover = new Bitmap(Image.FromFile(fileOpen.FileName), IMG_WIDTH, IMG_HEIGH);               
+         
+            }
 
             fileOpen.Dispose();           
 
