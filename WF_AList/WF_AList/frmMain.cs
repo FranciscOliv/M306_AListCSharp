@@ -22,8 +22,7 @@ namespace WF_AList
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
-            //List<string>[] lst = db.Select();
+            showLoginForm();
         }
 
        
@@ -48,6 +47,15 @@ namespace WF_AList
             {
                 faa.Close();
             }
+        }
+
+        private void showLoginForm()
+        {           
+            frmLogin fl = new frmLogin();
+            fl.ShowDialog(this);
+            this.Close();
+
+
         }
 
     }

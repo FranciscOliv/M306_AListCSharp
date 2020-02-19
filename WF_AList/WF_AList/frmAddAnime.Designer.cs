@@ -113,6 +113,7 @@
             this.Controls.Add(this.lblAnimeName);
             this.Controls.Add(this.tbxName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddAnime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

@@ -128,7 +128,60 @@ namespace WF_AList
                 return "Une erreur est survenue" + ex;
             }
         }
+        //Select statement
+        public bool userExist(string email)
+        {
 
+            try
+            {
+                string query = "SELECT email FROM dbalist.t_user WHERE email =@email AND activated = 1 AND idRole = 2;";
+                string result = string.Empty;
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    
+
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        result = dataReader["email"].ToString();
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();                        
+
+                }
+
+                if (result != string.Empty)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+           
+        }
 
 
         private string GenerateRandomString()
