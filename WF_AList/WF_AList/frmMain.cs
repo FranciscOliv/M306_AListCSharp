@@ -20,12 +20,10 @@ namespace WF_AList
             InitializeComponent();
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            showLoginForm();
-        }
 
        
+
+
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -52,11 +50,12 @@ namespace WF_AList
         private void showLoginForm()
         {           
             frmLogin fl = new frmLogin();
-            fl.ShowDialog(this);
-            this.Close();
-
-
+            fl.ShowDialog(this);            
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            showLoginForm();
+        }
     }
 }

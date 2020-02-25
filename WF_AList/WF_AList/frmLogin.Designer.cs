@@ -48,6 +48,7 @@
             // 
             this.tbxPwd.Location = new System.Drawing.Point(30, 81);
             this.tbxPwd.Name = "tbxPwd";
+            this.tbxPwd.PasswordChar = '*';
             this.tbxPwd.Size = new System.Drawing.Size(225, 20);
             this.tbxPwd.TabIndex = 1;
             // 
@@ -99,6 +100,7 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(297, 174);
@@ -109,9 +111,11 @@
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.tbxPwd);
             this.Controls.Add(this.tbxEmail);
+            this.MinimizeBox = false;
             this.Name = "frmLogin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

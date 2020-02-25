@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Security.Cryptography;
 
 namespace WF_AList
 {
@@ -141,7 +142,7 @@ namespace WF_AList
                 {
                     //Create Command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    
+
 
                     cmd.Parameters.AddWithValue("@email", email);
 
@@ -160,7 +161,7 @@ namespace WF_AList
                     dataReader.Close();
 
                     //close Connection
-                    this.CloseConnection();                        
+                    this.CloseConnection();
 
                 }
 
@@ -180,7 +181,60 @@ namespace WF_AList
                 return false;
             }
 
-           
+
+        }
+
+        //Select statement
+        public bool pwdVerify(string email, string pwd)
+        {
+
+            try
+            {
+                string query = "SELECT password FROM dbalist.t_user WHERE email =@email AND activated = 1 AND idRole = 2;";
+                string result = string.Empty;
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        result = dataReader["password"].ToString();
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+
+                }                
+
+                if (result == sha1Hash(email + pwd))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
 
@@ -202,6 +256,23 @@ namespace WF_AList
                 str_build.Append(letter);
             }
             return str_build.ToString();
+        }
+
+        private string sha1Hash(string input)
+        {
+            using (SHA1Managed sha1 = new SHA1Managed())
+            {
+                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var sb = new StringBuilder(hash.Length * 2);
+
+                foreach (byte b in hash)
+                {
+                    // can be "x2" if you want lowercase
+                    sb.Append(b.ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
         }
     }
 }
