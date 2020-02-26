@@ -13,17 +13,19 @@ namespace WF_AList
     public partial class frmMain : Form
     {
         //Initialisation de la bd
-        static MySQLConnect db = new MySQLConnect();
+        MySQLConnect db = new MySQLConnect();
+        List<Anime> lstAnimes = new List<Anime>();
+
 
         public frmMain()
         {
             InitializeComponent();
         }
-
-
-       
-
-
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            ShowLoginForm();
+            LoadAnime();
+        }
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -47,15 +49,80 @@ namespace WF_AList
             }
         }
 
-        private void showLoginForm()
-        {           
+        private void ShowLoginForm()
+        {
             frmLogin fl = new frmLogin();
-            fl.ShowDialog(this);            
+            fl.ShowDialog(this);
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void LoadAnime()
         {
-            showLoginForm();
+            lstAnimes = db.GetAllAnimeInfo();
+
         }
+
+
+        //public void ShowAllAnime()
+        //{
+        //    //SPACING
+        //    int widthOffset = 10;
+        //    int heightOffset = 30;
+        //    int margin = 10;
+
+        //    //SIZING
+        //    int cardWidth = 150;
+        //    int cardHeight = 218;
+
+        //    //CARDS INFO
+        //    lstCards = null;
+        //    lstCards = db.getAllCardInfo();
+        //    lstPbxCards = null;
+        //    lstPbxCards = new List<PictureBox>();
+
+        //    for (int i = 0; i < lstCards.Count; i++)
+        //    {
+        //        //VERIFIES IF LINE IS FULL AND CREATES NEW LINE
+        //        if ((widthOffset + cardWidth) >= this.Width)
+        //        {
+        //            widthOffset = 10;
+        //            heightOffset = heightOffset + cardHeight + margin;
+
+        //            PictureBox myPb = new PictureBox();
+
+        //            myPb.Size = new Size(cardWidth, cardHeight);
+        //            myPb.Name = "pbxCardImage";
+        //            myPb.SizeMode = PictureBoxSizeMode.StretchImage;
+        //            myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
+
+        //            myPb.Image = lstCards[i].Img;
+        //            myPb.Click += new EventHandler(pbxCard_Click);
+        //            myPb.Location = new Point(widthOffset, heightOffset);
+        //            lstPbxCards.Add(myPb);
+
+        //            this.Controls.Add(myPb);
+        //            widthOffset = widthOffset + cardWidth + margin;
+        //        }//FILLS THE LINE WITH NEW PBX
+        //        else
+        //        {
+        //            PictureBox myPb = new PictureBox();
+
+        //            myPb.Size = new Size(cardWidth, cardHeight);
+        //            myPb.Name = "pbxCardImage";
+        //            myPb.SizeMode = PictureBoxSizeMode.StretchImage;
+        //            myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
+
+        //            myPb.Image = lstCards[i].Img;
+        //            myPb.Click += new EventHandler(pbxCard_Click);
+        //            myPb.Location = new Point(widthOffset, heightOffset);
+
+        //            lstPbxCards.Add(myPb);
+        //            this.Controls.Add(myPb);
+        //            widthOffset = widthOffset + cardWidth + margin;
+
+        //        }
+        //    }
+        //}
+
+
     }
 }

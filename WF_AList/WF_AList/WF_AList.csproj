@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Anime.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="frmAddAnime.cs">
       <SubType>Form</SubType>

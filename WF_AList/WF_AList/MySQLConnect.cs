@@ -129,6 +129,64 @@ namespace WF_AList
                 return "Une erreur est survenue" + ex;
             }
         }
+
+        public List<Anime> GetAllAnimeInfo()
+        {
+            try
+            {
+                string query = "SELECT * FROM dbalist.t_anime;";
+
+                //Create a list to store the result
+                List<Anime> lstAnimeInfo = new List<Anime>();
+                int id = 0;
+                string name = string.Empty;
+                double averageScore = 0;
+                DateTime addDate = new DateTime();
+                string coverPath = string.Empty;
+                string card_type = string.Empty;
+                string description = string.Empty;
+
+
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        id = (int)dataReader["idAnime"];
+                        name = dataReader["name"].ToString();
+                        averageScore = (dataReader["avgNote"] != DBNull.Value) ? (double)dataReader["avgNote"] : 0.0;
+                        addDate = DateTime.Parse(dataReader["addDate"].ToString());
+                        coverPath = dataReader["cover"].ToString();
+                        description = dataReader["description"].ToString();
+
+                        Anime an = new Anime(id, name, averageScore, addDate, coverPath, description);
+                        lstAnimeInfo.Add(an);
+                    }
+                    //close Data Reader
+                    dataReader.Close();
+                    //close Connection
+                    this.CloseConnection();
+                    //return list to be displayed
+                    return lstAnimeInfo;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         //Select statement
         public bool userExist(string email)
         {
@@ -218,7 +276,7 @@ namespace WF_AList
                     //close Connection
                     this.CloseConnection();
 
-                }                
+                }
 
                 if (result == sha1Hash(email + pwd))
                 {
