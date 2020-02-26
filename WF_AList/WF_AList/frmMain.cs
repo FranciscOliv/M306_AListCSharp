@@ -36,9 +36,9 @@ namespace WF_AList
 
             if (dr == DialogResult.OK)
             {
-                Bitmap img = (faa.AnimeCover == null) ? Properties.Resources.defaultImg : faa.AnimeCover;
+                byte[] imgBlob = (faa.AnimeCover == null) ? ImageToBlob(Properties.Resources.defaultImg) : ImageToBlob(faa.AnimeCover);
 
-                string logs = db.insertAnime(faa.AnimeName, DateTime.Now, img, faa.AnimeDescription);
+                string logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
 
                 lblErrors.Text = logs;
 
@@ -46,6 +46,7 @@ namespace WF_AList
             else if (dr == DialogResult.Cancel)
             {
                 faa.Close();
+                LoadAnime();
             }
         }
 
@@ -58,7 +59,14 @@ namespace WF_AList
         private void LoadAnime()
         {
             lstAnimes = db.GetAllAnimeInfo();
+            if (lstAnimes.Count > 0)
+                pictureBox1.Image = lstAnimes[0].CoverImage;
+        }
 
+        private byte[] ImageToBlob(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
 

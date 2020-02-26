@@ -92,11 +92,10 @@ namespace WF_AList
             }
         }
 
-        public string insertAnime(string nameParam, DateTime addDateParam, Bitmap coverParam, string descriptionParam)
+        public string insertAnime(string nameParam, DateTime addDateParam, byte[] coverParam, string descriptionParam)
         {
-            //  string query = "INSERT INTO `yugioh`.`card` (`NAME`, `ATTRIBUTE`, `LEVEL`, `MONSTER_TYPE`, `CARD_TYPE`, `ATK`, `DEF`, `TEXT`, `CARD_IMG`) VALUES (@name, @attribute, @level, @monsterType, @cardType, @atk, @def,@text, @cardImg);";
             string query = "INSERT INTO `dbalist`.`t_anime` (`name`,`addDate`, `cover`, `description` ) VALUES (@name, @addDate, @cover, @description);";
-            string coverName = string.Empty;
+
             try
             {
                 //Open connection
@@ -105,12 +104,9 @@ namespace WF_AList
                     //create mysql command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                    //Image params
-                    coverName = GenerateRandomString() + ".png";
-
                     cmd.Parameters.AddWithValue("@name", nameParam);
                     cmd.Parameters.AddWithValue("@addDate", addDateParam);
-                    cmd.Parameters.AddWithValue("@cover", coverName);
+                    cmd.Parameters.AddWithValue("@cover", coverParam);
                     cmd.Parameters.AddWithValue("@description", descriptionParam);
 
 
@@ -120,8 +116,6 @@ namespace WF_AList
                     //close connection
                     this.CloseConnection();
                 }
-                string path = Config.ServerImgPath + coverName;
-                coverParam.Save(@path, ImageFormat.Png);
                 return "Votre anime a bien été ajouté";
             }
             catch (Exception ex)
@@ -142,7 +136,7 @@ namespace WF_AList
                 string name = string.Empty;
                 double averageScore = 0;
                 DateTime addDate = new DateTime();
-                string coverPath = string.Empty;
+                Bitmap coverImage;
                 string card_type = string.Empty;
                 string description = string.Empty;
 
@@ -163,10 +157,10 @@ namespace WF_AList
                         name = dataReader["name"].ToString();
                         averageScore = (dataReader["avgNote"] != DBNull.Value) ? (double)dataReader["avgNote"] : 0.0;
                         addDate = DateTime.Parse(dataReader["addDate"].ToString());
-                        coverPath = dataReader["cover"].ToString();
+                        coverImage = ByteToImage((byte[])dataReader["cover"]);
                         description = dataReader["description"].ToString();
 
-                        Anime an = new Anime(id, name, averageScore, addDate, coverPath, description);
+                        Anime an = new Anime(id, name, averageScore, addDate, coverImage, description);
                         lstAnimeInfo.Add(an);
                     }
                     //close Data Reader
@@ -330,6 +324,18 @@ namespace WF_AList
                 }
 
                 return sb.ToString();
+            }
+        }
+
+        public Bitmap ByteToImage(byte[] blob)
+        {
+            using (MemoryStream mStream = new MemoryStream())
+            {
+                mStream.Write(blob, 0, blob.Length);
+                mStream.Seek(0, SeekOrigin.Begin);
+
+                Bitmap bm = new Bitmap(mStream);
+                return bm;
             }
         }
     }

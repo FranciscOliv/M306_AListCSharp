@@ -11,8 +11,7 @@ namespace WF_AList
         const string server = "localhost"; //Renseigner
         const string database = "dbalist"; //Renseigner
         const string uid = "admin"; //Renseigner
-        const string password = "Super2012";    //Renseigner
-        const string serverImgPath = "F:/ECOLE/CFC/4eme/M306/Exercices/M306_ApplicationCSharp/img/";
+        const string password = "Super2012";    //Renseigner        
         private static bool _isLogged = false;
 
         public static string Server => server;
@@ -21,9 +20,7 @@ namespace WF_AList
 
         public static string Uid => uid;
 
-        public static string Password => password;
-
-        public static string ServerImgPath => serverImgPath;
+        public static string Password => password;        
 
         public static bool IsLogged { get => _isLogged; set => _isLogged = value; }
     }
