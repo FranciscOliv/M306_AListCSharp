@@ -13,8 +13,8 @@ namespace WF_AList
         const string uid = "admin"; //Renseigner
         const string password = "Super2012";    //Renseigner        
         private static bool _isLogged = false;
-        private const int img_width = 215;
-        private const int img_height = 315;
+        private const int img_width = 115;
+        private const int img_height = 215;
 
 
         public static string Server => server;

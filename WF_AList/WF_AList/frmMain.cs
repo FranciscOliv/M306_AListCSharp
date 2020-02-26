@@ -24,7 +24,8 @@ namespace WF_AList
         private void frmMain_Load(object sender, EventArgs e)
         {
             ShowLoginForm();
-            LoadAnime();
+            ShowAllAnime();
+            
         }
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,7 +42,7 @@ namespace WF_AList
                 string logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
 
                 lblErrors.Text = logs;
-                LoadAnime();
+                ShowAllAnime();
 
             }
             else if (dr == DialogResult.Cancel)
@@ -80,10 +81,10 @@ namespace WF_AList
             int pbxHeight = Config.Img_height;
 
             //Info load
-            if (lstAnimes == null && lstAnimes.Count > 0)
+           // if (lstAnimes == null || lstAnimes.Count > 0)
                 LoadAnime();
 
-            List<PictureBox> lstPbxCards = new List<PictureBox>();
+            List<PictureBox> lstPbxAnime = new List<PictureBox>();
 
             for (int i = 0; i < lstAnimes.Count; i++)
             {
@@ -96,14 +97,14 @@ namespace WF_AList
                     PictureBox myPb = new PictureBox();
 
                     myPb.Size = new Size(pbxWidth, pbxHeight);
-                    myPb.Name = "pbxCardImage";
+                    myPb.Name = "pbxAnimeCover";
                     myPb.SizeMode = PictureBoxSizeMode.StretchImage;
-                    myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
+                    myPb.AccessibleName = "pbxCover" + lstAnimes[i].Id.ToString();
 
-                    myPb.Image = lstCards[i].Img;
-                    myPb.Click += new EventHandler(pbxCard_Click);
+                    myPb.Image = lstAnimes[i].CoverImage;
+                    //myPb.Click += new EventHandler(pbxCard_Click);
                     myPb.Location = new Point(widthOffset, heightOffset);
-                    lstPbxCards.Add(myPb);
+                    lstPbxAnime.Add(myPb);
 
                     this.Controls.Add(myPb);
                     widthOffset = widthOffset + pbxWidth + margin;
@@ -113,15 +114,15 @@ namespace WF_AList
                     PictureBox myPb = new PictureBox();
 
                     myPb.Size = new Size(pbxWidth, pbxHeight);
-                    myPb.Name = "pbxCardImage";
+                    myPb.Name = "pbxAnimeCover";
                     myPb.SizeMode = PictureBoxSizeMode.StretchImage;
-                    myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
+                    myPb.AccessibleName = "pbxCover" + lstAnimes[i].Id.ToString();
 
-                    myPb.Image = lstCards[i].Img;
-                    myPb.Click += new EventHandler(pbxCard_Click);
+                    myPb.Image = lstAnimes[i].CoverImage;
+                    //myPb.Click += new EventHandler(pbxCard_Click);
                     myPb.Location = new Point(widthOffset, heightOffset);
 
-                    lstPbxCards.Add(myPb);
+                    lstPbxAnime.Add(myPb);
                     this.Controls.Add(myPb);
                     widthOffset = widthOffset + pbxWidth + margin;
 
