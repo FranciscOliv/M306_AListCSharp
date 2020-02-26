@@ -41,12 +41,12 @@ namespace WF_AList
                 string logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
 
                 lblErrors.Text = logs;
+                LoadAnime();
 
             }
             else if (dr == DialogResult.Cancel)
             {
                 faa.Close();
-                LoadAnime();
             }
         }
 
@@ -59,8 +59,6 @@ namespace WF_AList
         private void LoadAnime()
         {
             lstAnimes = db.GetAllAnimeInfo();
-            if (lstAnimes.Count > 0)
-                pictureBox1.Image = lstAnimes[0].CoverImage;
         }
 
         private byte[] ImageToBlob(Image img)
@@ -70,66 +68,66 @@ namespace WF_AList
         }
 
 
-        //public void ShowAllAnime()
-        //{
-        //    //SPACING
-        //    int widthOffset = 10;
-        //    int heightOffset = 30;
-        //    int margin = 10;
+        public void ShowAllAnime()
+        {
+            //SPACING
+            int widthOffset = 10;
+            int heightOffset = 30;
+            int margin = 10;
 
-        //    //SIZING
-        //    int cardWidth = 150;
-        //    int cardHeight = 218;
+            //SIZING
+            int pbxWidth = Config.Img_width;
+            int pbxHeight = Config.Img_height;
 
-        //    //CARDS INFO
-        //    lstCards = null;
-        //    lstCards = db.getAllCardInfo();
-        //    lstPbxCards = null;
-        //    lstPbxCards = new List<PictureBox>();
+            //Info load
+            if (lstAnimes == null && lstAnimes.Count > 0)
+                LoadAnime();
 
-        //    for (int i = 0; i < lstCards.Count; i++)
-        //    {
-        //        //VERIFIES IF LINE IS FULL AND CREATES NEW LINE
-        //        if ((widthOffset + cardWidth) >= this.Width)
-        //        {
-        //            widthOffset = 10;
-        //            heightOffset = heightOffset + cardHeight + margin;
+            List<PictureBox> lstPbxCards = new List<PictureBox>();
 
-        //            PictureBox myPb = new PictureBox();
+            for (int i = 0; i < lstAnimes.Count; i++)
+            {
+                //VERIFIES IF LINE IS FULL AND CREATES NEW LINE
+                if ((widthOffset + pbxWidth) >= this.Width)
+                {
+                    widthOffset = 10;
+                    heightOffset = heightOffset + pbxHeight + margin;
 
-        //            myPb.Size = new Size(cardWidth, cardHeight);
-        //            myPb.Name = "pbxCardImage";
-        //            myPb.SizeMode = PictureBoxSizeMode.StretchImage;
-        //            myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
+                    PictureBox myPb = new PictureBox();
 
-        //            myPb.Image = lstCards[i].Img;
-        //            myPb.Click += new EventHandler(pbxCard_Click);
-        //            myPb.Location = new Point(widthOffset, heightOffset);
-        //            lstPbxCards.Add(myPb);
+                    myPb.Size = new Size(pbxWidth, pbxHeight);
+                    myPb.Name = "pbxCardImage";
+                    myPb.SizeMode = PictureBoxSizeMode.StretchImage;
+                    myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
 
-        //            this.Controls.Add(myPb);
-        //            widthOffset = widthOffset + cardWidth + margin;
-        //        }//FILLS THE LINE WITH NEW PBX
-        //        else
-        //        {
-        //            PictureBox myPb = new PictureBox();
+                    myPb.Image = lstCards[i].Img;
+                    myPb.Click += new EventHandler(pbxCard_Click);
+                    myPb.Location = new Point(widthOffset, heightOffset);
+                    lstPbxCards.Add(myPb);
 
-        //            myPb.Size = new Size(cardWidth, cardHeight);
-        //            myPb.Name = "pbxCardImage";
-        //            myPb.SizeMode = PictureBoxSizeMode.StretchImage;
-        //            myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
+                    this.Controls.Add(myPb);
+                    widthOffset = widthOffset + pbxWidth + margin;
+                }//FILLS THE LINE WITH NEW PBX
+                else
+                {
+                    PictureBox myPb = new PictureBox();
 
-        //            myPb.Image = lstCards[i].Img;
-        //            myPb.Click += new EventHandler(pbxCard_Click);
-        //            myPb.Location = new Point(widthOffset, heightOffset);
+                    myPb.Size = new Size(pbxWidth, pbxHeight);
+                    myPb.Name = "pbxCardImage";
+                    myPb.SizeMode = PictureBoxSizeMode.StretchImage;
+                    myPb.AccessibleName = "pbxCard" + lstCards[i].Id.ToString();
 
-        //            lstPbxCards.Add(myPb);
-        //            this.Controls.Add(myPb);
-        //            widthOffset = widthOffset + cardWidth + margin;
+                    myPb.Image = lstCards[i].Img;
+                    myPb.Click += new EventHandler(pbxCard_Click);
+                    myPb.Location = new Point(widthOffset, heightOffset);
 
-        //        }
-        //    }
-        //}
+                    lstPbxCards.Add(myPb);
+                    this.Controls.Add(myPb);
+                    widthOffset = widthOffset + pbxWidth + margin;
+
+                }
+            }
+        }
 
 
     }

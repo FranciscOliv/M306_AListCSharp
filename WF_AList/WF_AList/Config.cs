@@ -13,6 +13,9 @@ namespace WF_AList
         const string uid = "admin"; //Renseigner
         const string password = "Super2012";    //Renseigner        
         private static bool _isLogged = false;
+        private const int img_width = 215;
+        private const int img_height = 315;
+
 
         public static string Server => server;
 
@@ -23,5 +26,9 @@ namespace WF_AList
         public static string Password => password;        
 
         public static bool IsLogged { get => _isLogged; set => _isLogged = value; }
+
+        public static int Img_width => img_width;
+
+        public static int Img_height => img_height;
     }
 }

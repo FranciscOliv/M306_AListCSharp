@@ -18,8 +18,8 @@ namespace WF_AList
         }
         
         private Bitmap _animeCover;
-        private const int IMG_WIDTH = 215;
-        private const int IMG_HEIGH = 315;
+        private int IMG_WIDTH = Config.Img_width;
+        private int IMG_HEIGH = Config.Img_height;
 
         public string AnimeName { get => tbxName.Text;}
         public string AnimeDescription { get => tbxDescription.Text;}
