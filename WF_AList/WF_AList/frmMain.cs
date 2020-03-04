@@ -82,8 +82,9 @@ namespace WF_AList
 
             if (dr == DialogResult.OK)
             {
-                
-
+                byte[] imgBlob = ImageToBlob(fma.AnimeCover);
+                string logs = db.updateAnime(id, fma.AnimeName, fma.AnimeDescription, imgBlob);
+                lblErrors.Text = logs;
 
 
             }
@@ -98,8 +99,8 @@ namespace WF_AList
             int margin = 10;
 
             //SIZING
-            int pbxWidth = Config.Img_width-100;
-            int pbxHeight = Config.Img_height-100;
+            int pbxWidth = 100;
+            int pbxHeight = 150;
 
             //Info load
             // if (lstAnimes == null || lstAnimes.Count > 0)

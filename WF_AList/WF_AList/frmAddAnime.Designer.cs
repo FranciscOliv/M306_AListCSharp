@@ -58,6 +58,7 @@
             this.tbxDescription.Location = new System.Drawing.Point(12, 74);
             this.tbxDescription.Multiline = true;
             this.tbxDescription.Name = "tbxDescription";
+            this.tbxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxDescription.Size = new System.Drawing.Size(215, 107);
             this.tbxDescription.TabIndex = 2;
             // 

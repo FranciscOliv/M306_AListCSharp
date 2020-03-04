@@ -123,7 +123,43 @@ namespace WF_AList
             catch (Exception ex)
             {
                 this.CloseConnection();
-                return "Une erreur est survenue" + ex;
+                return "Une erreur est survenue " + ex;
+            }
+        }
+
+        public string updateAnime(int idParam, string nameParam, string descriptionParam, byte[] coverParam)
+        {
+
+            string query = "UPDATE `dbalist`.`t_anime` SET `name` = @name, `description` = @description, `cover` = @cover WHERE (`idAnime` = @id);";
+
+            try
+            {
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create mysql command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@id", idParam);
+                    cmd.Parameters.AddWithValue("@name", nameParam);
+                    cmd.Parameters.AddWithValue("@description", descriptionParam);
+                    cmd.Parameters.AddWithValue("@cover", coverParam);
+              
+
+
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+
+                    //close connection
+                    this.CloseConnection();
+                }
+                return "Votre carte a bien été mise à jour";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                this.CloseConnection();
+                return "Une erreur est survenue " + ex;
             }
         }
 
@@ -180,6 +216,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 this.CloseConnection();
                 return null;
             }
@@ -234,6 +271,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 this.CloseConnection();
                 return false;
             }
@@ -290,6 +328,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 this.CloseConnection();
                 return false;
             }

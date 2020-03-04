@@ -54,6 +54,7 @@ namespace WF_AList
             if (fileOpen.ShowDialog() == DialogResult.OK)
             {
                 AnimeCover = new Bitmap(Image.FromFile(fileOpen.FileName), IMG_WIDTH, IMG_HEIGH);
+                pbxAnimeImage.Image = AnimeCover;
 
             }
 

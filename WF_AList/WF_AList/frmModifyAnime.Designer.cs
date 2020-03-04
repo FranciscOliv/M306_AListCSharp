@@ -83,6 +83,7 @@
             this.tbxDescription.Location = new System.Drawing.Point(247, 77);
             this.tbxDescription.Multiline = true;
             this.tbxDescription.Name = "tbxDescription";
+            this.tbxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxDescription.Size = new System.Drawing.Size(215, 107);
             this.tbxDescription.TabIndex = 9;
             // 
@@ -107,7 +108,7 @@
             this.pbxAnimeImage.Location = new System.Drawing.Point(12, 12);
             this.pbxAnimeImage.Name = "pbxAnimeImage";
             this.pbxAnimeImage.Size = new System.Drawing.Size(226, 244);
-            this.pbxAnimeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbxAnimeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxAnimeImage.TabIndex = 14;
             this.pbxAnimeImage.TabStop = false;
             // 
@@ -124,9 +125,11 @@
             this.Controls.Add(this.tbxDescription);
             this.Controls.Add(this.lblAnimeName);
             this.Controls.Add(this.tbxName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "frmModifyAnime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmModifyAnime";
+            this.Text = "Modifier un anime";
             this.Load += new System.EventHandler(this.frmModifyAnime_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAnimeImage)).EndInit();
             this.ResumeLayout(false);
