@@ -122,6 +122,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                this.CloseConnection();
                 return "Une erreur est survenue" + ex;
             }
         }
@@ -179,6 +180,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                this.CloseConnection();
                 return null;
             }
         }
@@ -232,6 +234,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                this.CloseConnection();
                 return false;
             }
 
@@ -287,6 +290,7 @@ namespace WF_AList
             }
             catch (Exception ex)
             {
+                this.CloseConnection();
                 return false;
             }
         }

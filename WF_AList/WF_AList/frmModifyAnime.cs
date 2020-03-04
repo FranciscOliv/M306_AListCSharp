@@ -15,23 +15,35 @@ namespace WF_AList
         private Bitmap _animeCover;
         private int IMG_WIDTH = Config.Img_width;
         private int IMG_HEIGH = Config.Img_height;
+        private Anime currentAnime;
+        
 
-        private Anime anime;
-        public string AnimeName { get => tbxName.Text; }
-        public string AnimeDescription { get => tbxDescription.Text; }
+        
+        public string AnimeName { get => tbxName.Text; set => tbxName.Text = value; }
+        public string AnimeDescription { get => tbxDescription.Text; set => tbxDescription.Text = value; }
         public Bitmap AnimeCover { get => _animeCover; set => _animeCover = value; }
+        
 
         public frmModifyAnime(Anime animeParam)
         {
             InitializeComponent();
-            this.anime = animeParam;
+            this.currentAnime = animeParam;          
 
 
         }
         private void frmModifyAnime_Load(object sender, EventArgs e)
         {
-          /  LoadFields();
+           LoadFields();
         }
+
+        private void LoadFields()
+        {
+            AnimeName = currentAnime.Name;
+            AnimeDescription = currentAnime.Description;
+            AnimeCover = currentAnime.CoverImage;
+            pbxAnimeImage.Image = AnimeCover;
+        }
+        
 
         private void btnModifyCover_Click(object sender, EventArgs e)
         {

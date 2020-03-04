@@ -24,7 +24,10 @@ namespace WF_AList
         private void frmMain_Load(object sender, EventArgs e)
         {
             ShowLoginForm();
-            ShowAllAnime();
+            LoadAnime();
+                if (lstAnimes != null && lstAnimes.Count > 0)
+                ShowAllAnime();
+
 
         }
 
@@ -71,17 +74,18 @@ namespace WF_AList
         private void pbxCard_Click(object sender, EventArgs e)
         {
             PictureBox clickedPbx = (sender as PictureBox);
-            int id = Convert.ToInt32(clickedPbx.AccessibleName.Replace("pbxCard", ""));
+            int id = Convert.ToInt32(clickedPbx.AccessibleName.Replace("pbxCover", ""));
 
             DialogResult dr = new DialogResult();
-            frmModifyAnime fma = new frmModifyAnime();
+            frmModifyAnime fma = new frmModifyAnime(lstAnimes.Find(x => x.Id == id));
             dr = fma.ShowDialog(this);
 
             if (dr == DialogResult.OK)
             {
-                              
-
                 
+
+
+
             }
         }
 
@@ -94,8 +98,8 @@ namespace WF_AList
             int margin = 10;
 
             //SIZING
-            int pbxWidth = Config.Img_width;
-            int pbxHeight = Config.Img_height;
+            int pbxWidth = Config.Img_width-100;
+            int pbxHeight = Config.Img_height-100;
 
             //Info load
             // if (lstAnimes == null || lstAnimes.Count > 0)
@@ -136,7 +140,7 @@ namespace WF_AList
                     myPb.AccessibleName = "pbxCover" + lstAnimes[i].Id.ToString();
 
                     myPb.Image = lstAnimes[i].CoverImage;
-                    //myPb.Click += new EventHandler(pbxCard_Click);
+                    myPb.Click += new EventHandler(pbxCard_Click);
                     myPb.Location = new Point(widthOffset, heightOffset);
 
                     lstPbxAnime.Add(myPb);

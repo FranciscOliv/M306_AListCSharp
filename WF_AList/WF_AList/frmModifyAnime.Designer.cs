@@ -35,12 +35,14 @@
             this.tbxDescription = new System.Windows.Forms.TextBox();
             this.lblAnimeName = new System.Windows.Forms.Label();
             this.tbxName = new System.Windows.Forms.TextBox();
+            this.pbxAnimeImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAnimeImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(125, 216);
+            this.btnCancel.Location = new System.Drawing.Point(357, 233);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 23);
             this.btnCancel.TabIndex = 13;
@@ -50,7 +52,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(15, 216);
+            this.btnOK.Location = new System.Drawing.Point(247, 233);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(105, 23);
             this.btnOK.TabIndex = 12;
@@ -60,7 +62,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(12, 58);
+            this.lblDescription.Location = new System.Drawing.Point(244, 61);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 11;
@@ -68,7 +70,7 @@
             // 
             // btnModifyCover
             // 
-            this.btnModifyCover.Location = new System.Drawing.Point(15, 187);
+            this.btnModifyCover.Location = new System.Drawing.Point(247, 204);
             this.btnModifyCover.Name = "btnModifyCover";
             this.btnModifyCover.Size = new System.Drawing.Size(215, 23);
             this.btnModifyCover.TabIndex = 10;
@@ -78,7 +80,7 @@
             // 
             // tbxDescription
             // 
-            this.tbxDescription.Location = new System.Drawing.Point(15, 74);
+            this.tbxDescription.Location = new System.Drawing.Point(247, 77);
             this.tbxDescription.Multiline = true;
             this.tbxDescription.Name = "tbxDescription";
             this.tbxDescription.Size = new System.Drawing.Size(215, 107);
@@ -87,7 +89,7 @@
             // lblAnimeName
             // 
             this.lblAnimeName.AutoSize = true;
-            this.lblAnimeName.Location = new System.Drawing.Point(12, 9);
+            this.lblAnimeName.Location = new System.Drawing.Point(244, 12);
             this.lblAnimeName.Name = "lblAnimeName";
             this.lblAnimeName.Size = new System.Drawing.Size(29, 13);
             this.lblAnimeName.TabIndex = 8;
@@ -95,16 +97,26 @@
             // 
             // tbxName
             // 
-            this.tbxName.Location = new System.Drawing.Point(15, 25);
+            this.tbxName.Location = new System.Drawing.Point(247, 28);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(215, 20);
             this.tbxName.TabIndex = 7;
+            // 
+            // pbxAnimeImage
+            // 
+            this.pbxAnimeImage.Location = new System.Drawing.Point(12, 12);
+            this.pbxAnimeImage.Name = "pbxAnimeImage";
+            this.pbxAnimeImage.Size = new System.Drawing.Size(226, 244);
+            this.pbxAnimeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbxAnimeImage.TabIndex = 14;
+            this.pbxAnimeImage.TabStop = false;
             // 
             // frmModifyAnime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 257);
+            this.ClientSize = new System.Drawing.Size(472, 271);
+            this.Controls.Add(this.pbxAnimeImage);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblDescription);
@@ -116,6 +128,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmModifyAnime";
             this.Load += new System.EventHandler(this.frmModifyAnime_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAnimeImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,5 +143,6 @@
         private System.Windows.Forms.TextBox tbxDescription;
         private System.Windows.Forms.Label lblAnimeName;
         private System.Windows.Forms.TextBox tbxName;
+        private System.Windows.Forms.PictureBox pbxAnimeImage;
     }
 }

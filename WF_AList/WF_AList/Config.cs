@@ -14,8 +14,8 @@ namespace WF_AList
         const string password = "j*u(5GRp92";    //Renseigner        
         const string port = "3307";
         private static bool _isLogged = false;
-        private const int img_width = 115;
-        private const int img_height = 215;
+        private const int img_width = 215;
+        private const int img_height = 320;
 
 
         public static string Server => server;
