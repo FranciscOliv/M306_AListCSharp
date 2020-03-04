@@ -24,6 +24,7 @@ namespace WF_AList
         private string database;
         private string uid;
         private string password;
+        private string port;
 
         public object MemoryStream { get; private set; }
 
@@ -41,9 +42,10 @@ namespace WF_AList
             database = Config.Database; //Renseigner
             uid = Config.Uid;	//Renseigner
             password = Config.Password;	//Renseigner
+            port = Config.Port;
             string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            connectionString = "SERVER=" + server + ";"+ "DATABASE=" +
+            database + ";" + "PORT=" + port + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             connection = new MySqlConnection(connectionString);
         }

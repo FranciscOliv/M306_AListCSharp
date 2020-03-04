@@ -8,10 +8,11 @@ namespace WF_AList
 {
     public class Config
     {
-        const string server = "localhost"; //Renseigner
+        const string server = "hibou.lab.ecinf.ch"; //Renseigner
         const string database = "dbalist"; //Renseigner
-        const string uid = "admin"; //Renseigner
-        const string password = "Super2012";    //Renseigner        
+        const string uid = "alist"; //Renseigner
+        const string password = "j*u(5GRp92";    //Renseigner        
+        const string port = "3307";
         private static bool _isLogged = false;
         private const int img_width = 115;
         private const int img_height = 215;
@@ -30,5 +31,7 @@ namespace WF_AList
         public static int Img_width => img_width;
 
         public static int Img_height => img_height;
+
+        public static string Port => port;
     }
 }

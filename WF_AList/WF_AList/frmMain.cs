@@ -25,7 +25,7 @@ namespace WF_AList
         {
             ShowLoginForm();
             ShowAllAnime();
-            
+
         }
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,6 +68,23 @@ namespace WF_AList
             return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
+        private void pbxCard_Click(object sender, EventArgs e)
+        {
+            PictureBox clickedPbx = (sender as PictureBox);
+            int id = Convert.ToInt32(clickedPbx.AccessibleName.Replace("pbxCard", ""));
+
+            DialogResult dr = new DialogResult();
+            frmModifyAnime fma = new frmModifyAnime();
+            dr = fma.ShowDialog(this);
+
+            if (dr == DialogResult.OK)
+            {
+                              
+
+                
+            }
+        }
+
 
         public void ShowAllAnime()
         {
@@ -81,8 +98,8 @@ namespace WF_AList
             int pbxHeight = Config.Img_height;
 
             //Info load
-           // if (lstAnimes == null || lstAnimes.Count > 0)
-                LoadAnime();
+            // if (lstAnimes == null || lstAnimes.Count > 0)
+            LoadAnime();
 
             List<PictureBox> lstPbxAnime = new List<PictureBox>();
 
@@ -102,7 +119,7 @@ namespace WF_AList
                     myPb.AccessibleName = "pbxCover" + lstAnimes[i].Id.ToString();
 
                     myPb.Image = lstAnimes[i].CoverImage;
-                    //myPb.Click += new EventHandler(pbxCard_Click);
+                    myPb.Click += new EventHandler(pbxCard_Click);
                     myPb.Location = new Point(widthOffset, heightOffset);
                     lstPbxAnime.Add(myPb);
 

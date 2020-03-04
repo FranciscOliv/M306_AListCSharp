@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WF_AList
 {
-    class Anime
+    public class Anime
     {
         private int _id;
         private string _name;
