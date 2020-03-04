@@ -21,11 +21,14 @@ namespace WF_AList
         {
             InitializeComponent();
         }
+
+
+        //EVENTS -----------------------------------------------------------------
         private void frmMain_Load(object sender, EventArgs e)
         {
             ShowLoginForm();
             LoadAnime();
-                if (lstAnimes != null && lstAnimes.Count > 0)
+            if (lstAnimes != null && lstAnimes.Count > 0)
                 ShowAllAnime();
 
 
@@ -41,10 +44,10 @@ namespace WF_AList
             if (dr == DialogResult.OK)
             {
                 byte[] imgBlob = (faa.AnimeCover == null) ? ImageToBlob(Properties.Resources.defaultImg) : ImageToBlob(faa.AnimeCover);
-
+                               
                 string logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
-
                 lblErrors.Text = logs;
+
                 ShowAllAnime();
 
             }
@@ -52,23 +55,6 @@ namespace WF_AList
             {
                 faa.Close();
             }
-        }
-
-        private void ShowLoginForm()
-        {
-            frmLogin fl = new frmLogin();
-            fl.ShowDialog(this);
-        }
-
-        private void LoadAnime()
-        {
-            lstAnimes = db.GetAllAnimeInfo();
-        }
-
-        private byte[] ImageToBlob(Image img)
-        {
-            ImageConverter converter = new ImageConverter();
-            return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
         private void pbxCard_Click(object sender, EventArgs e)
@@ -85,12 +71,47 @@ namespace WF_AList
                 byte[] imgBlob = ImageToBlob(fma.AnimeCover);
                 string logs = db.updateAnime(id, fma.AnimeName, fma.AnimeDescription, imgBlob);
                 lblErrors.Text = logs;
-
+                UpdateView();
 
             }
+            else if (dr == DialogResult.Cancel)
+            {
+                fma.Close();
+            }
+        }
+        private void raffraîchirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateView();
         }
 
 
+        //FUNCTIONS-----------------------------------------------------------------------
+
+        private void LoadAnime()
+        {
+            lstAnimes = db.GetAllAnimeInfo();
+        }
+
+
+        private byte[] ImageToBlob(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
+        }
+
+
+        //VIEW---------------------------------------------------------------------------
+        private void ShowLoginForm()
+        {
+            frmLogin fl = new frmLogin();
+            fl.ShowDialog(this);
+        }
+
+        private void UpdateView()
+        {
+            RemovePictureBox("pbxAnimeCover");
+            ShowAllAnime();
+        }
         public void ShowAllAnime()
         {
             //SPACING
@@ -102,8 +123,7 @@ namespace WF_AList
             int pbxWidth = 100;
             int pbxHeight = 150;
 
-            //Info load
-            // if (lstAnimes == null || lstAnimes.Count > 0)
+            //Info load            
             LoadAnime();
 
             List<PictureBox> lstPbxAnime = new List<PictureBox>();
@@ -149,6 +169,14 @@ namespace WF_AList
                     widthOffset = widthOffset + pbxWidth + margin;
 
                 }
+            }
+        }
+        public void RemovePictureBox(string nameParam)
+        {
+            foreach (PictureBox pb in this.Controls.Find(nameParam, true))
+            {
+                this.Controls.Remove(pb);
+                pb.Dispose();
             }
         }
 

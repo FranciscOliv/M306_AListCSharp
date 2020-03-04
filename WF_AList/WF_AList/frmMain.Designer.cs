@@ -32,6 +32,7 @@
             this.animeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblErrors = new System.Windows.Forms.Label();
+            this.raffraîchirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msFrmMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,8 @@
             // animeToolStripMenuItem
             // 
             this.animeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ajouterToolStripMenuItem});
+            this.ajouterToolStripMenuItem,
+            this.raffraîchirToolStripMenuItem});
             this.animeToolStripMenuItem.Name = "animeToolStripMenuItem";
             this.animeToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.animeToolStripMenuItem.Text = "Anime";
@@ -67,6 +69,13 @@
             this.lblErrors.Size = new System.Drawing.Size(35, 13);
             this.lblErrors.TabIndex = 1;
             this.lblErrors.Text = "label1";
+            // 
+            // raffraîchirToolStripMenuItem
+            // 
+            this.raffraîchirToolStripMenuItem.Name = "raffraîchirToolStripMenuItem";
+            this.raffraîchirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.raffraîchirToolStripMenuItem.Text = "Raffraîchir";
+            this.raffraîchirToolStripMenuItem.Click += new System.EventHandler(this.raffraîchirToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -96,6 +105,7 @@
         private System.Windows.Forms.ToolStripMenuItem animeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem;
         private System.Windows.Forms.Label lblErrors;
+        private System.Windows.Forms.ToolStripMenuItem raffraîchirToolStripMenuItem;
     }
 }
 
