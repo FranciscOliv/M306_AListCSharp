@@ -16,24 +16,24 @@ namespace WF_AList
         private int IMG_WIDTH = Config.Img_width;
         private int IMG_HEIGH = Config.Img_height;
         private Anime currentAnime;
-        
 
-        
+
+
         public string AnimeName { get => tbxName.Text; set => tbxName.Text = value; }
         public string AnimeDescription { get => tbxDescription.Text; set => tbxDescription.Text = value; }
         public Bitmap AnimeCover { get => _animeCover; set => _animeCover = value; }
-        
+
 
         public frmModifyAnime(Anime animeParam)
         {
             InitializeComponent();
-            this.currentAnime = animeParam;          
+            this.currentAnime = animeParam;
 
 
         }
         private void frmModifyAnime_Load(object sender, EventArgs e)
         {
-           LoadFields();
+            LoadFields();
         }
 
         private void LoadFields()
@@ -43,7 +43,7 @@ namespace WF_AList
             AnimeCover = currentAnime.CoverImage;
             pbxAnimeImage.Image = AnimeCover;
         }
-        
+
 
         private void btnModifyCover_Click(object sender, EventArgs e)
         {
@@ -53,14 +53,18 @@ namespace WF_AList
 
             if (fileOpen.ShowDialog() == DialogResult.OK)
             {
-                AnimeCover = new Bitmap(Image.FromFile(fileOpen.FileName), IMG_WIDTH, IMG_HEIGH);
-                pbxAnimeImage.Image = AnimeCover;
+                string test = fileOpen.FileName;
+                
+                    AnimeCover = new Bitmap(Image.FromFile(fileOpen.FileName), IMG_WIDTH, IMG_HEIGH);
+                    pbxAnimeImage.Image = AnimeCover;
+
+                
 
             }
 
             fileOpen.Dispose();
         }
 
-        
+
     }
 }

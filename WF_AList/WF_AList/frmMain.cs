@@ -12,7 +12,7 @@ namespace WF_AList
 {
     public partial class frmMain : Form
     {
-        //Initialisation de la bd
+        //Initialisation des variables globales
         MySQLConnect db = new MySQLConnect();
         List<Anime> lstAnimes = new List<Anime>();
 
@@ -30,12 +30,13 @@ namespace WF_AList
             LoadAnime();
             if (lstAnimes != null && lstAnimes.Count > 0)
                 ShowAllAnime();
-
+            lblErrors.Text = string.Empty;
 
         }
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string logs = string.Empty;
             DialogResult dr = new DialogResult();
             frmAddAnime faa = new frmAddAnime();
 
@@ -44,8 +45,12 @@ namespace WF_AList
             if (dr == DialogResult.OK)
             {
                 byte[] imgBlob = (faa.AnimeCover == null) ? ImageToBlob(Properties.Resources.defaultImg) : ImageToBlob(faa.AnimeCover);
-                               
-                string logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
+
+                }
                 lblErrors.Text = logs;
 
                 ShowAllAnime();
@@ -59,6 +64,7 @@ namespace WF_AList
 
         private void pbxCard_Click(object sender, EventArgs e)
         {
+            string logs = string.Empty;
             PictureBox clickedPbx = (sender as PictureBox);
             int id = Convert.ToInt32(clickedPbx.AccessibleName.Replace("pbxCover", ""));
 
@@ -66,18 +72,24 @@ namespace WF_AList
             frmModifyAnime fma = new frmModifyAnime(lstAnimes.Find(x => x.Id == id));
             dr = fma.ShowDialog(this);
 
-            if (dr == DialogResult.OK)
+            if (dr == DialogResult.OK)//Bouton OK
             {
                 byte[] imgBlob = ImageToBlob(fma.AnimeCover);
-                string logs = db.updateAnime(id, fma.AnimeName, fma.AnimeDescription, imgBlob);
-                lblErrors.Text = logs;
-                UpdateView();
-
+                logs = db.updateAnime(id, fma.AnimeName, fma.AnimeDescription, imgBlob);
             }
-            else if (dr == DialogResult.Cancel)
+            else if (dr == DialogResult.Abort)//Bouton supprimer
+            {
+                logs = db.deleteAnime(id);
+                fma.Close();
+            }
+            else if (dr == DialogResult.Cancel)//Bouton cancel
             {
                 fma.Close();
             }
+
+            //Mise a jour de la form 
+            lblErrors.Text = logs;
+            UpdateView();
         }
         private void raffraîchirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -116,7 +128,7 @@ namespace WF_AList
         {
             //SPACING
             int widthOffset = 10;
-            int heightOffset = 30;
+            int heightOffset = 50;
             int margin = 10;
 
             //SIZING
@@ -180,6 +192,9 @@ namespace WF_AList
             }
         }
 
-
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

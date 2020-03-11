@@ -31,14 +31,17 @@
             this.msFrmMain = new System.Windows.Forms.MenuStrip();
             this.animeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblErrors = new System.Windows.Forms.Label();
             this.raffraîchirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblErrors = new System.Windows.Forms.Label();
+            this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msFrmMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // msFrmMain
             // 
             this.msFrmMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fichierToolStripMenuItem,
             this.animeToolStripMenuItem});
             this.msFrmMain.Location = new System.Drawing.Point(0, 0);
             this.msFrmMain.Name = "msFrmMain";
@@ -57,25 +60,44 @@
             // ajouterToolStripMenuItem
             // 
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
-            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.ajouterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.ajouterToolStripMenuItem.Text = "Ajouter";
             this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.ajouterToolStripMenuItem_Click);
-            // 
-            // lblErrors
-            // 
-            this.lblErrors.AutoSize = true;
-            this.lblErrors.Location = new System.Drawing.Point(12, 428);
-            this.lblErrors.Name = "lblErrors";
-            this.lblErrors.Size = new System.Drawing.Size(35, 13);
-            this.lblErrors.TabIndex = 1;
-            this.lblErrors.Text = "label1";
             // 
             // raffraîchirToolStripMenuItem
             // 
             this.raffraîchirToolStripMenuItem.Name = "raffraîchirToolStripMenuItem";
-            this.raffraîchirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.raffraîchirToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.raffraîchirToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.raffraîchirToolStripMenuItem.Text = "Raffraîchir";
             this.raffraîchirToolStripMenuItem.Click += new System.EventHandler(this.raffraîchirToolStripMenuItem_Click);
+            // 
+            // lblErrors
+            // 
+            this.lblErrors.AutoSize = true;
+            this.lblErrors.ForeColor = System.Drawing.Color.Black;
+            this.lblErrors.Location = new System.Drawing.Point(12, 33);
+            this.lblErrors.Name = "lblErrors";
+            this.lblErrors.Size = new System.Drawing.Size(59, 13);
+            this.lblErrors.TabIndex = 1;
+            this.lblErrors.Text = "Label Infos";
+            // 
+            // fichierToolStripMenuItem
+            // 
+            this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.fichierToolStripMenuItem.Text = "Fichier";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -106,6 +128,8 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem;
         private System.Windows.Forms.Label lblErrors;
         private System.Windows.Forms.ToolStripMenuItem raffraîchirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

@@ -163,6 +163,37 @@ namespace WF_AList
             }
         }
 
+        public string deleteAnime(int idParam)
+        {
+
+            string query = "DELETE FROM `dbalist`.`t_anime` WHERE (`idAnime` = @id);";
+
+            try
+            {
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create mysql command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                    cmd.Parameters.AddWithValue("@id", idParam);
+                    
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+
+                    //close connection
+                    this.CloseConnection();
+                }
+                return "Votre carte a bien été effacé";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                this.CloseConnection();
+                return "Une erreur est survenue " + ex;
+            }
+        }
+
         public List<Anime> GetAllAnimeInfo()
         {
             try

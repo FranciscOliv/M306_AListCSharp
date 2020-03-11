@@ -36,13 +36,14 @@
             this.lblAnimeName = new System.Windows.Forms.Label();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.pbxAnimeImage = new System.Windows.Forms.PictureBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAnimeImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(357, 233);
+            this.btnCancel.Location = new System.Drawing.Point(357, 219);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 23);
             this.btnCancel.TabIndex = 13;
@@ -52,7 +53,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(247, 233);
+            this.btnOK.Location = new System.Drawing.Point(247, 219);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(105, 23);
             this.btnOK.TabIndex = 12;
@@ -70,7 +71,7 @@
             // 
             // btnModifyCover
             // 
-            this.btnModifyCover.Location = new System.Drawing.Point(247, 204);
+            this.btnModifyCover.Location = new System.Drawing.Point(247, 190);
             this.btnModifyCover.Name = "btnModifyCover";
             this.btnModifyCover.Size = new System.Drawing.Size(215, 23);
             this.btnModifyCover.TabIndex = 10;
@@ -107,16 +108,28 @@
             // 
             this.pbxAnimeImage.Location = new System.Drawing.Point(12, 12);
             this.pbxAnimeImage.Name = "pbxAnimeImage";
-            this.pbxAnimeImage.Size = new System.Drawing.Size(226, 244);
+            this.pbxAnimeImage.Size = new System.Drawing.Size(226, 259);
             this.pbxAnimeImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxAnimeImage.TabIndex = 14;
             this.pbxAnimeImage.TabStop = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnDelete.Location = new System.Drawing.Point(244, 248);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(215, 23);
+            this.btnDelete.TabIndex = 15;
+            this.btnDelete.Text = "Supprimer l\'anime";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            
             // 
             // frmModifyAnime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 271);
+            this.ClientSize = new System.Drawing.Size(472, 278);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.pbxAnimeImage);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -147,5 +160,6 @@
         private System.Windows.Forms.Label lblAnimeName;
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.PictureBox pbxAnimeImage;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
