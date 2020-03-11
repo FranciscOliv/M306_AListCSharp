@@ -13,9 +13,9 @@ namespace WF_AList
     public partial class frmMain : Form
     {
         //Initialisation des variables globales
-        MySQLConnect db = new MySQLConnect();
-        List<Anime> lstAnimes = new List<Anime>();
-
+        private MySQLConnect db;
+        private List<Anime> lstAnimes;
+        private string[] logs;
 
         public frmMain()
         {
@@ -26,17 +26,23 @@ namespace WF_AList
         //EVENTS -----------------------------------------------------------------
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //Initialisation des variables
+            db = new MySQLConnect();
+            lstAnimes = new List<Anime>();
+            logs = new string[2];
+
+
+            //Initialisation de la form
             ShowLoginForm();
             LoadAnime();
             if (lstAnimes != null && lstAnimes.Count > 0)
                 ShowAllAnime();
-            lblErrors.Text = string.Empty;
 
         }
 
+        //CREATE
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string logs = string.Empty;
             DialogResult dr = new DialogResult();
             frmAddAnime faa = new frmAddAnime();
 
@@ -46,25 +52,25 @@ namespace WF_AList
             {
                 byte[] imgBlob = (faa.AnimeCover == null) ? ImageToBlob(Properties.Resources.defaultImg) : ImageToBlob(faa.AnimeCover);
 
-                for (int i = 0; i < 10; i++)
-                {
-                    logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
+                logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
 
-                }
-                lblErrors.Text = logs;
-
-                ShowAllAnime();
 
             }
             else if (dr == DialogResult.Cancel)
             {
+                logs = null;
                 faa.Close();
             }
+            //Mise a jour de la form             
+            UpdateView();
+            ShowLogs();
+
+
         }
 
+        //UPDATE and DELETE
         private void pbxCard_Click(object sender, EventArgs e)
         {
-            string logs = string.Empty;
             PictureBox clickedPbx = (sender as PictureBox);
             int id = Convert.ToInt32(clickedPbx.AccessibleName.Replace("pbxCover", ""));
 
@@ -76,20 +82,24 @@ namespace WF_AList
             {
                 byte[] imgBlob = ImageToBlob(fma.AnimeCover);
                 logs = db.updateAnime(id, fma.AnimeName, fma.AnimeDescription, imgBlob);
+
             }
             else if (dr == DialogResult.Abort)//Bouton supprimer
             {
                 logs = db.deleteAnime(id);
                 fma.Close();
+
             }
             else if (dr == DialogResult.Cancel)//Bouton cancel
             {
                 fma.Close();
+                logs = null;
             }
 
-            //Mise a jour de la form 
-            lblErrors.Text = logs;
+
+            //Mise a jour de la form             
             UpdateView();
+            ShowLogs();
         }
         private void raffraîchirToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -99,9 +109,41 @@ namespace WF_AList
 
         //FUNCTIONS-----------------------------------------------------------------------
 
+        //READ
         private void LoadAnime()
         {
             lstAnimes = db.GetAllAnimeInfo();
+        }
+
+        private void ShowLogs()
+        {
+            if (logs != null)
+            {
+                if (logs.Length > 0)
+                {
+                    string caption = string.Empty;
+                    if (logs[0] == "true")
+                    {
+                        caption = "Succès";
+                    }
+                    else
+                    {
+                        caption = "Erreur";
+                    }
+
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result;
+
+                    // Displays the MessageBox.
+                    result = MessageBox.Show(logs[1], caption, buttons);
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        // Closes the parent form.
+                        this.Close();
+                    }
+                }
+
+            }
         }
 
 
@@ -110,6 +152,8 @@ namespace WF_AList
             ImageConverter converter = new ImageConverter();
             return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
+
+
 
 
         //VIEW---------------------------------------------------------------------------
@@ -128,7 +172,7 @@ namespace WF_AList
         {
             //SPACING
             int widthOffset = 10;
-            int heightOffset = 50;
+            int heightOffset = 30;
             int margin = 10;
 
             //SIZING

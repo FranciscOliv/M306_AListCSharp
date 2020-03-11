@@ -111,7 +111,7 @@
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.tbxPwd);
             this.Controls.Add(this.tbxEmail);
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

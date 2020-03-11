@@ -43,6 +43,7 @@
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(215, 20);
             this.tbxName.TabIndex = 0;
+            this.tbxName.TextChanged += new System.EventHandler(this.textbox_TextChanged);
             // 
             // lblAnimeName
             // 
@@ -61,6 +62,7 @@
             this.tbxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxDescription.Size = new System.Drawing.Size(215, 107);
             this.tbxDescription.TabIndex = 2;
+            this.tbxDescription.TextChanged += new System.EventHandler(this.textbox_TextChanged);
             // 
             // btnAddCover
             // 
@@ -103,6 +105,7 @@
             // 
             // frmAddAnime
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(238, 249);
@@ -119,6 +122,7 @@
             this.Name = "frmAddAnime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ajouter un anime";
+            this.Load += new System.EventHandler(this.frmAddAnime_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

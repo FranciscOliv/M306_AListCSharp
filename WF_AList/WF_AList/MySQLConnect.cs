@@ -94,7 +94,7 @@ namespace WF_AList
             }
         }
 
-        public string insertAnime(string nameParam, DateTime addDateParam, byte[] coverParam, string descriptionParam)
+        public string[] insertAnime(string nameParam, DateTime addDateParam, byte[] coverParam, string descriptionParam)
         {
             string query = "INSERT INTO `dbalist`.`t_anime` (`name`,`addDate`, `cover`, `description` ) VALUES (@name, @addDate, @cover, @description);";
 
@@ -118,16 +118,16 @@ namespace WF_AList
                     //close connection
                     this.CloseConnection();
                 }
-                return "Votre anime a bien été ajouté";
+                return new string[] { "true", "Votre anime a bien été ajouté" };
             }
             catch (Exception ex)
             {
                 this.CloseConnection();
-                return "Une erreur est survenue " + ex;
+                return new string[] { "false", "Une erreur est survenue " + ex };
             }
         }
 
-        public string updateAnime(int idParam, string nameParam, string descriptionParam, byte[] coverParam)
+        public string[] updateAnime(int idParam, string nameParam, string descriptionParam, byte[] coverParam)
         {
 
             string query = "UPDATE `dbalist`.`t_anime` SET `name` = @name, `description` = @description, `cover` = @cover WHERE (`idAnime` = @id);";
@@ -143,9 +143,7 @@ namespace WF_AList
                     cmd.Parameters.AddWithValue("@id", idParam);
                     cmd.Parameters.AddWithValue("@name", nameParam);
                     cmd.Parameters.AddWithValue("@description", descriptionParam);
-                    cmd.Parameters.AddWithValue("@cover", coverParam);
-              
-
+                    cmd.Parameters.AddWithValue("@cover", coverParam);           
 
                     cmd.Prepare();
                     cmd.ExecuteNonQuery();
@@ -153,17 +151,17 @@ namespace WF_AList
                     //close connection
                     this.CloseConnection();
                 }
-                return "Votre carte a bien été mise à jour";
+                return new string[] { "true", "Votre anime a bien été mis a jour" };
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 this.CloseConnection();
-                return "Une erreur est survenue " + ex;
+                return new string[] { "false", "Une erreur est survenue " + ex };
             }
         }
 
-        public string deleteAnime(int idParam)
+        public string[] deleteAnime(int idParam)
         {
 
             string query = "DELETE FROM `dbalist`.`t_anime` WHERE (`idAnime` = @id);";
@@ -184,13 +182,15 @@ namespace WF_AList
                     //close connection
                     this.CloseConnection();
                 }
-                return "Votre carte a bien été effacé";
+                return new string[] { "true", "Votre anime a bien été effacé" };
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 this.CloseConnection();
-                return "Une erreur est survenue " + ex;
+                return new string[] { "false","Une erreur est survenue " + ex };
+                
             }
         }
 

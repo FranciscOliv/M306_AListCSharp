@@ -32,7 +32,6 @@
             this.animeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raffraîchirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblErrors = new System.Windows.Forms.Label();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msFrmMain.SuspendLayout();
@@ -73,16 +72,6 @@
             this.raffraîchirToolStripMenuItem.Text = "Raffraîchir";
             this.raffraîchirToolStripMenuItem.Click += new System.EventHandler(this.raffraîchirToolStripMenuItem_Click);
             // 
-            // lblErrors
-            // 
-            this.lblErrors.AutoSize = true;
-            this.lblErrors.ForeColor = System.Drawing.Color.Black;
-            this.lblErrors.Location = new System.Drawing.Point(12, 33);
-            this.lblErrors.Name = "lblErrors";
-            this.lblErrors.Size = new System.Drawing.Size(59, 13);
-            this.lblErrors.TabIndex = 1;
-            this.lblErrors.Text = "Label Infos";
-            // 
             // fichierToolStripMenuItem
             // 
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -105,14 +94,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblErrors);
             this.Controls.Add(this.msFrmMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.msFrmMain;
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AList";
+            this.Text = "AList Administration";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.msFrmMain.ResumeLayout(false);
             this.msFrmMain.PerformLayout();
@@ -126,7 +114,6 @@
         private System.Windows.Forms.MenuStrip msFrmMain;
         private System.Windows.Forms.ToolStripMenuItem animeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem;
-        private System.Windows.Forms.Label lblErrors;
         private System.Windows.Forms.ToolStripMenuItem raffraîchirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

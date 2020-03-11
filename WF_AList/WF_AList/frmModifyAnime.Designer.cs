@@ -87,6 +87,7 @@
             this.tbxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxDescription.Size = new System.Drawing.Size(215, 107);
             this.tbxDescription.TabIndex = 9;
+            this.tbxDescription.TextChanged += new System.EventHandler(this.textbox_TextChanged);
             // 
             // lblAnimeName
             // 
@@ -103,6 +104,7 @@
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(215, 20);
             this.tbxName.TabIndex = 7;
+            this.tbxName.TextChanged += new System.EventHandler(this.textbox_TextChanged);
             // 
             // pbxAnimeImage
             // 
@@ -122,10 +124,10 @@
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Supprimer l\'anime";
             this.btnDelete.UseVisualStyleBackColor = true;
-            
             // 
             // frmModifyAnime
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(472, 278);
@@ -140,6 +142,7 @@
             this.Controls.Add(this.tbxName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmModifyAnime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Modifier un anime";

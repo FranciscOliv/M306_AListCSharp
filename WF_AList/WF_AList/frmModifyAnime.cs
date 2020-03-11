@@ -34,6 +34,7 @@ namespace WF_AList
         private void frmModifyAnime_Load(object sender, EventArgs e)
         {
             LoadFields();
+            btnOK.Enabled = false;
         }
 
         private void LoadFields()
@@ -65,6 +66,16 @@ namespace WF_AList
             fileOpen.Dispose();
         }
 
-
+        private void textbox_TextChanged(object sender, EventArgs e)
+        {
+            if(tbxName.Text !=string.Empty && tbxDescription.Text != string.Empty)
+            {
+                btnOK.Enabled = true;
+            }
+            else
+            {
+                btnOK.Enabled = false;
+            }
+        }
     }
 }
