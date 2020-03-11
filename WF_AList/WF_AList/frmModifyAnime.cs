@@ -33,8 +33,7 @@ namespace WF_AList
         }
         private void frmModifyAnime_Load(object sender, EventArgs e)
         {
-            LoadFields();
-            btnOK.Enabled = false;
+            LoadFields();            
         }
 
         private void LoadFields()
