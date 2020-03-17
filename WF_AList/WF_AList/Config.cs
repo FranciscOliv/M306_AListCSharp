@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// \file Config.cs
+/// \brief Alist, M306
+/// \group CANAS Diogo, FONSECA Francisco, FUJISE Thomas, HOARAU Nicolas
+/// \author FNSCD , I.DA-P4B CFPTI
+/// \date 2020.03.17 , FNSCD , version initiale
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +13,11 @@ namespace WF_AList
 {
     public class Config
     {
-        const string server = "127.0.0.1"; //Renseigner
+        const string server = "hibou.lab.ecinf.ch"; //Renseigner
         const string database = "dbalist"; //Renseigner
-        const string uid = "admin"; //Renseigner
-        const string password = "Super2012";    //Renseigner        
-        const string port = "3306";
+        const string uid = "alist"; //Renseigner
+        const string password = "j*u(5GRp92";    //Renseigner        
+        const string port = "3307"; //Renseigner
         private static bool _isLogged = false;
         private const int img_width = 215;
         private const int img_height = 320;
