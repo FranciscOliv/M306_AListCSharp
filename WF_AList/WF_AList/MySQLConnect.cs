@@ -1,8 +1,9 @@
-﻿/// \ file MySqlConnect.cs
-/// \ brief Classe MySQLConnect - Permet la connexion à la base de données
+﻿/// \file MySqlConnect.cs
+/// \brief Classe MySQLConnect - Permet la connexion à la base de données
 /// \ et d'effectuer des requetes
-/// \ author FONSECA DE OLIVEIRA, Francisco Daniel , I.DA-P4B CFPTI
-/// \ date 2019.11.28 , FOF , version 2
+/// \group CANAS Diogo, FONSECA Francisco, FUJISE Thomas, HOARAU Nicolas
+/// \author FNSCD , CFPTI, I.DA-P4B CFPTI
+/// \date 2019.11.28 , FOF , version 2
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -259,9 +260,10 @@ namespace WF_AList
 
             try
             {
-                string query = "SELECT email FROM dbalist.t_user WHERE email =@email AND activated = 1 AND idRole = 2;";
+                string query = "SELECT email FROM dbalist.t_user WHERE email =@email AND idRole = 2;";
                 string result = string.Empty;
                 //Open connection
+
                 if (this.OpenConnection() == true)
                 {
                     //Create Command

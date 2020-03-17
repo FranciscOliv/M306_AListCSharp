@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// \file frmMain.cs
+/// \brief Alist, M306
+/// \group CANAS Diogo, FONSECA Francisco, FUJISE Thomas, HOARAU Nicolas
+/// \author FNSCD , I.DA-P4B CFPTI
+/// \date 2020.03.17 , FNSCD , version initiale
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +28,7 @@ namespace WF_AList
         }
 
 
-        //EVENTS -----------------------------------------------------------------
+        //FORM EVENTS-----------------------------------------------------------------
         private void frmMain_Load(object sender, EventArgs e)
         {
             //Initialisation des variables
@@ -53,7 +58,6 @@ namespace WF_AList
                 byte[] imgBlob = (faa.AnimeCover == null) ? ImageToBlob(Properties.Resources.defaultImg) : ImageToBlob(faa.AnimeCover);
 
                 logs = db.insertAnime(faa.AnimeName, DateTime.Now, imgBlob, faa.AnimeDescription);
-
 
             }
             else if (dr == DialogResult.Cancel)
@@ -105,6 +109,10 @@ namespace WF_AList
         {
             UpdateView();
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
 
         //FUNCTIONS-----------------------------------------------------------------------
@@ -115,6 +123,7 @@ namespace WF_AList
             lstAnimes = db.GetAllAnimeInfo();
         }
 
+        //ERRORS AND INFO DISPLAY
         private void ShowLogs()
         {
             if (logs != null)
@@ -146,7 +155,7 @@ namespace WF_AList
             }
         }
 
-
+        //IMAGE CONVERT
         private byte[] ImageToBlob(Image img)
         {
             ImageConverter converter = new ImageConverter();
@@ -166,6 +175,7 @@ namespace WF_AList
         private void UpdateView()
         {
             RemovePictureBox("pbxAnimeCover");
+            RemoveLabel("lblAnimeCover");
             ShowAllAnime();
         }
         public void ShowAllAnime()
@@ -173,16 +183,16 @@ namespace WF_AList
             //SPACING
             int widthOffset = 10;
             int heightOffset = 30;
-            int margin = 10;
+            int marginBottom = 8;
+            int marginRight = 10;
 
             //SIZING
             int pbxWidth = 100;
             int pbxHeight = 150;
+            int lblHeight = 30;
 
             //Info load            
             LoadAnime();
-
-            List<PictureBox> lstPbxAnime = new List<PictureBox>();
 
             for (int i = 0; i < lstAnimes.Count; i++)
             {
@@ -190,43 +200,65 @@ namespace WF_AList
                 if ((widthOffset + pbxWidth) >= this.Width)
                 {
                     widthOffset = 10;
-                    heightOffset = heightOffset + pbxHeight + margin;
+                    heightOffset = heightOffset + pbxHeight + marginBottom + lblHeight;
 
                     PictureBox myPb = new PictureBox();
+                    Label myLbl = new Label();
 
                     myPb.Size = new Size(pbxWidth, pbxHeight);
                     myPb.Name = "pbxAnimeCover";
                     myPb.SizeMode = PictureBoxSizeMode.StretchImage;
                     myPb.AccessibleName = "pbxCover" + lstAnimes[i].Id.ToString();
-
                     myPb.Image = lstAnimes[i].CoverImage;
                     myPb.Click += new EventHandler(pbxCard_Click);
                     myPb.Location = new Point(widthOffset, heightOffset);
-                    lstPbxAnime.Add(myPb);
 
+
+
+                    myLbl.Size = new Size(pbxWidth, lblHeight);
+                    myLbl.Name = "lblAnimeCover";
+                    myLbl.Text = lstAnimes[i].Name;
+                    myLbl.TextAlign = ContentAlignment.TopCenter;
+                    myLbl.Padding = new Padding(0, 3, 0, 0);
+                    myLbl.Font = new Font("Arial Rounded MT Bold", 8);
+                    myLbl.Location = new Point(widthOffset, heightOffset + pbxHeight);
+
+
+
+                    this.Controls.Add(myLbl);
                     this.Controls.Add(myPb);
-                    widthOffset = widthOffset + pbxWidth + margin;
+                    widthOffset = widthOffset + pbxWidth + marginRight;
                 }//FILLS THE LINE WITH NEW PBX
                 else
                 {
                     PictureBox myPb = new PictureBox();
+                    Label myLbl = new Label();
 
                     myPb.Size = new Size(pbxWidth, pbxHeight);
                     myPb.Name = "pbxAnimeCover";
                     myPb.SizeMode = PictureBoxSizeMode.StretchImage;
                     myPb.AccessibleName = "pbxCover" + lstAnimes[i].Id.ToString();
-
                     myPb.Image = lstAnimes[i].CoverImage;
                     myPb.Click += new EventHandler(pbxCard_Click);
                     myPb.Location = new Point(widthOffset, heightOffset);
 
-                    lstPbxAnime.Add(myPb);
+
+                    myLbl.Size = new Size(pbxWidth, lblHeight);
+                    myLbl.Name = "lblAnimeCover";
+                    myLbl.Text = lstAnimes[i].Name;
+                    myLbl.TextAlign = ContentAlignment.TopCenter;
+                    myLbl.Padding = new Padding(0, 3, 0, 0);
+                    myLbl.Font = new Font("Arial Rounded MT Bold", 8);
+                    myLbl.Location = new Point(widthOffset, heightOffset + pbxHeight);
+
                     this.Controls.Add(myPb);
-                    widthOffset = widthOffset + pbxWidth + margin;
+                    this.Controls.Add(myLbl);
+                    widthOffset = widthOffset + pbxWidth + marginRight;
 
                 }
             }
         }
+
         public void RemovePictureBox(string nameParam)
         {
             foreach (PictureBox pb in this.Controls.Find(nameParam, true))
@@ -235,10 +267,17 @@ namespace WF_AList
                 pb.Dispose();
             }
         }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        public void RemoveLabel(string nameParam)
         {
-            Application.Exit();
+            foreach (Label lbl in this.Controls.Find(nameParam, true))
+            {
+                this.Controls.Remove(lbl);
+                lbl.Dispose();
+            }
         }
+
+
+
+
     }
 }

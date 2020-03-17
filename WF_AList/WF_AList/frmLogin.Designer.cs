@@ -40,6 +40,7 @@
             // tbxEmail
             // 
             this.tbxEmail.Location = new System.Drawing.Point(30, 42);
+            this.tbxEmail.MaxLength = 25;
             this.tbxEmail.Name = "tbxEmail";
             this.tbxEmail.Size = new System.Drawing.Size(225, 20);
             this.tbxEmail.TabIndex = 0;
@@ -47,6 +48,7 @@
             // tbxPwd
             // 
             this.tbxPwd.Location = new System.Drawing.Point(30, 81);
+            this.tbxPwd.MaxLength = 100;
             this.tbxPwd.Name = "tbxPwd";
             this.tbxPwd.PasswordChar = '*';
             this.tbxPwd.Size = new System.Drawing.Size(225, 20);

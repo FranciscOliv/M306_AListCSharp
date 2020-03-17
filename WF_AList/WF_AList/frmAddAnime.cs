@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// \file frmAddAnime.cs
+/// \brief Alist, M306
+/// \group CANAS Diogo, FONSECA Francisco, FUJISE Thomas, HOARAU Nicolas
+/// \author FNSCD , I.DA-P4B CFPTI
+/// \date 2020.03.17 , FNSCD , version initiale
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

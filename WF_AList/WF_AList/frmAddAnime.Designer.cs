@@ -40,6 +40,7 @@
             // tbxName
             // 
             this.tbxName.Location = new System.Drawing.Point(12, 25);
+            this.tbxName.MaxLength = 100;
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(215, 20);
             this.tbxName.TabIndex = 0;
